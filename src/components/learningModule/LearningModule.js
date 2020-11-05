@@ -24,9 +24,15 @@ const LearningModule = ({setGameStatus}) => {
       });
   }
 
+  const [showLoader, setShowLoader] = React.useState(false)
+
   const handleSubmit=()=> {
     if(currentQuestionId < quizData.totalQuestions-1){
-      setCurrentQuestionId(currentQuestionId+1);
+      setShowLoader(true);
+      setTimeout(() => {
+        setCurrentQuestionId(currentQuestionId+1);
+        setShowLoader(false);
+      }, 500)
     } else {
       setCurrentQuestionId(0);
       setGameStatus({message: "Great Job! Play again.", loadIntro: true});
@@ -59,7 +65,7 @@ const LearningModule = ({setGameStatus}) => {
               { possibleAnswers }
             </div>
             <div className="learningModule--submitButtonContainer">
-              <Button label="Submit" handleSubmit={ handleSubmit } />
+              <Button label="Submit" handleSubmit={ handleSubmit } showLoader={ showLoader }/>
             </div>
           </div>
         </>

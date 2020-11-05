@@ -10,4 +10,10 @@
   background-color: $grass-blade;
   padding: 0 2em;
   cursor: pointer;
+  position: relative;
+
+  &--loader {
+    position: absolute;
+    padding: 2px;
+  }
 }
